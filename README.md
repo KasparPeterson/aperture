@@ -48,3 +48,14 @@ services and APIs.
   compare with `sample-conf.yaml`.
 * Start aperture without any command line parameters (`./aperture`), all configuration
   is done in the `~/.aperture/aperture.yaml` file.
+
+## Kaspar
+
+Setup:
+
+```
+docker build . -t aperature
+docker run -p 8081:8081 -p 9000:9000 -p 9999:9999 -p 11010:11010 -it aperature aperture
+```
+
+

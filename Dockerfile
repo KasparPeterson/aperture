@@ -36,5 +36,9 @@ RUN apk add --no-cache \
     bash \
     ca-certificates
 
+COPY .aperture/aperture.yaml /root/.aperture/aperture.yaml
+
+WORKDIR /root/
+
 # Specify the start command and entrypoint as the aperture daemon.
-ENTRYPOINT ["aperture"]
+# ENTRYPOINT ["aperture"]
