@@ -37,6 +37,9 @@ RUN apk add --no-cache \
     ca-certificates
 
 COPY .aperture/aperture.yaml /root/.aperture/aperture.yaml
+COPY .lnd/tls.cert /root/.aperture/tls.cert
+COPY .lnd/tls.key /root/.aperture/tls.key
+
 
 WORKDIR /root/
 

@@ -27,7 +27,7 @@ profile: 9999
 # options are required.
 authenticator:
   # The host:port which lnd's RPC can be reached at.
-  lndhost: "0.0.0.0:10009"
+  lndhost: "172.23.0.3:10009" # replace with your lnd node
 
   # The path to lnd's TLS certificate.
   # tlspath: "/path/to/lnd/tls.cert"
@@ -133,7 +133,7 @@ services:
 
     # The LSAT value in satoshis for the service. It is ignored if
     # dynamicprice.enabled is set to true.
-    price: 10
+    price: 1000
 
     # Options to use for connection to the price serving gRPC server.
     dynamicprice:
@@ -159,7 +159,7 @@ services:
     protocol: http
     constraints:
       "valid_until": "2024-01-01"
-    price: 1
+    price: 1000
 
   - name: "service3"
     hostregexp: "service3.com:8083"
