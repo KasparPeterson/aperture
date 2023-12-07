@@ -100,13 +100,13 @@ services:
   - name: "service1"
 
     # The regular expression used to match the service host.
-    hostregexp: '^service1.com$'
+    hostregexp: '.'
 
     # The regular expression used to match the path of the URL.
-    pathregexp: '^/.*$'
+    # pathregexp: '^v1$'
 
     # The host:port which the service can be reached at.
-    address: "127.0.0.1:10009"
+    address: "172.17.0.3:8082"
 
     # The HTTP protocol that should be used to connect to the service. Valid
     # options include: http, https.
@@ -118,14 +118,14 @@ services:
 
     # A comma-delimited list of capabilities that will be granted for tokens of
     # the service at the base tier.
-    capabilities: "add,subtract"
+    # capabilities: "add,subtract"
 
     # The set of constraints that are applied to tokens of the service at the
     # base tier.
     constraints:
       # This is just an example of how aperture could be extended
       # but would not have any effect without additional support added.
-      "valid_until": 1682483169
+      "valid_until": "2024-01-01"
 
     # a caveat will be added that expires the LSAT after this many seconds,
     # 31557600 = 1 year.
@@ -133,24 +133,7 @@ services:
 
     # The LSAT value in satoshis for the service. It is ignored if
     # dynamicprice.enabled is set to true.
-    price: 1000
-
-    # Options to use for connection to the price serving gRPC server.
-    dynamicprice:
-      # Whether or not a gRPC server is available to query price data from. If
-      # this option is set to true then the 'price' option is ignored.
-      enabled: false
-
-      # The address of the gRPC pricer server.
-      grpcaddress: "127.0.0.1:10010"
-
-      # Whether or not TLS encryption should be used for communications with the
-      # gRPC server.
-      insecure: false
-
-      # The path to the pricer server's tls.cert. If the 'insecure' option is
-      # set to true then this path must be set.
-      tlscertpath: "path-to-pricer-server-tls-cert/tls.cert"
+    price: 0
 
   - name: "service2"
     hostregexp: "service2.com:8083"
