@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"time"
+	"log"
 
 	"github.com/lightninglabs/aperture/lsat"
 	"github.com/lightningnetwork/lnd/lntypes"
@@ -115,7 +116,11 @@ func (m *Mint) MintLSAT(ctx context.Context,
 
 	// We'll start by retrieving a new challenge in the form of a Lightning
 	// payment request to present the requester of the LSAT with.
+	log.Print("price: ", price)
 	paymentRequest, paymentHash, err := m.cfg.Challenger.NewChallenge(price)
+	log.Print("paymentRequest: ", paymentRequest)
+	log.Print("paymentHash: ", paymentHash)
+	log.Print("err: ", err)
 	if err != nil {
 		return nil, "", err
 	}

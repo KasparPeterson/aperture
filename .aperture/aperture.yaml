@@ -1,5 +1,6 @@
 # The address which the proxy can be reached at.
 listenaddr: "0.0.0.0:8081"
+insecure: true
 
 # The root path of static content to serve upon receiving a request the proxy
 # cannot handle.
@@ -16,7 +17,7 @@ debuglevel: "debug"
 
 # Whether the proxy should create a valid certificate through Let's Encrypt for
 # the fully qualifying domain name.
-# autocert: false
+# autocert: true
 # servername: aperture.example.com
 
 # The port on which the pprof profile will be served. If no port is provided,
@@ -27,13 +28,13 @@ profile: 9999
 # options are required.
 authenticator:
   # The host:port which lnd's RPC can be reached at.
-  lndhost: "172.23.0.3:10009" # replace with your lnd node
+  lndhost: "127.0.0.1:10009" # replace with your lnd node
 
   # The path to lnd's TLS certificate.
-  # tlspath: "/path/to/lnd/tls.cert"
+  tlspath: ".aperture/tls.cert"
 
   # The path to lnd's macaroon directory.
-  # macdir: "/path/to/lnd/data/chain/bitcoin/simnet"
+  macdir: ".aperture/.lnd/data/chain/bitcoin/simnet"
 
   # The chain network the lnd is active on.
   network: "simnet"
@@ -48,7 +49,7 @@ authenticator:
   devserver: true
 
   # Set to true to disable any auth.
-  disable: true
+  disable: false
 
 # The selected database backend. The current default backend is "sqlite".
 # Aperture also has support for postgres and etcd.
@@ -133,7 +134,7 @@ services:
 
     # The LSAT value in satoshis for the service. It is ignored if
     # dynamicprice.enabled is set to true.
-    price: 0
+    price: 10
 
   - name: "service2"
     hostregexp: "service2.com:8083"

@@ -6,13 +6,13 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/btcsuite/btcd/btcutil"
+	//"github.com/btcsuite/btcd/btcutil"
 	"github.com/lightninglabs/aperture/aperturedb"
 	"github.com/lightninglabs/aperture/proxy"
 )
 
 var (
-	apertureDataDir        = btcutil.AppDataDir("aperture", false)
+	apertureDataDir        =  ".aperture" // TODO:btcutil.AppDataDir("aperture", false)
 	defaultConfigFilename  = "aperture.yaml"
 	defaultTLSKeyFilename  = "tls.key"
 	defaultTLSCertFilename = "tls.cert"

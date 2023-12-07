@@ -173,7 +173,12 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				break
 			}
 
-			prefixLog.Infof("Authentication failed. Sending 402.")
+			log.Info("TEST Authentication failed. Sending 402.")
+			log.Info("calling handlePaymentRequired")
+			log.Info("w: ", w)
+			log.Info("r: ", r)
+			log.Info("resourceName: ", resourceName)
+			log.Info("price: ", price)
 			p.handlePaymentRequired(w, r, resourceName, price)
 			return
 		}
@@ -400,6 +405,10 @@ func (p *Proxy) handlePaymentRequired(w http.ResponseWriter, r *http.Request,
 
 	addCorsHeaders(r.Header)
 
+	log.Info("TEST handlePaymentRequired")
+	log.Info("r: ", r)
+	log.Info("serviceName: ", serviceName)
+	log.Info("servicePrice: ", servicePrice)
 	header, err := p.authenticator.FreshChallengeHeader(
 		r, serviceName, servicePrice,
 	)
