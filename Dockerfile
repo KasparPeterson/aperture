@@ -13,14 +13,15 @@ ENV GODEBUG netdns=cgo
 # master by default.
 ARG checkout="master"
 
+COPY . /go/src/github.com/lightninglabs/aperture
 # Install dependencies and install/build aperture
-RUN apk add --no-cache --update alpine-sdk \
-    git \
-    make \
-&& git clone https://github.com/lightninglabs/aperture /go/src/github.com/lightninglabs/aperture \
-&& cd /go/src/github.com/lightninglabs/aperture \
-&& git checkout $checkout \
-&& make install
+RUN apk add --no-cache --update alpine-sdk git make \
+  && cd /go/src/github.com/lightninglabs/aperture \
+  && make install
+#&& git clone https://github.com/lightninglabs/aperture /go/src/github.com/lightninglabs/aperture \
+#&& cd /go/src/github.com/lightninglabs/aperture \
+#&& git checkout $checkout \
+
 
 # Start a new, final image to reduce size.
 FROM alpine as final
@@ -37,8 +38,8 @@ RUN apk add --no-cache \
     ca-certificates
 
 COPY .aperture/aperture.yaml /root/.aperture/aperture.yaml
-COPY .lnd/tls.cert /root/.aperture/tls.cert
-COPY .lnd/tls.key /root/.aperture/tls.key
+COPY .aperture/.lnd/tls.cert /root/.aperture/tls.cert
+COPY .aperture/.lnd/tls.key /root/.aperture/tls.key
 
 
 WORKDIR /root/
